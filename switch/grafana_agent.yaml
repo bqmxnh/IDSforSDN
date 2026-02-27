@@ -1,0 +1,45 @@
+server:
+  log_level: debug
+
+metrics:
+  global:
+    scrape_interval: 5s
+  configs: []
+
+logs:
+  configs:
+    - name: suricata-logs
+      clients:
+        - url: http://192.168.111.11:3100/loki/api/v1/push
+
+      positions:
+        filename: /var/lib/grafana-agent/positions.yaml
+
+      scrape_configs:
+        - job_name: suricata
+          static_configs:
+            - targets: [localhost]
+              labels:
+                job: suricata
+                host: ${HOSTNAME}
+                interface: br-s1
+                environment: lab
+                __path__: /var/log/suricata/eve.json
+          pipeline_stages:
+            - json:
+                expressions:
+                  timestamp: timestamp
+                  event_type: event_type
+                  src_ip: src_ip
+                  dest_ip: dest_ip
+                  alert: alert
+            - labels:
+                event_type:
+                src_ip:
+                dest_ip:
+                host:
+                interface:
+                environment:
+            - timestamp:
+                source: timestamp
+                format: RFC3339Nano
