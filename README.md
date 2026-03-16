@@ -1,4 +1,5 @@
-# UIT Project - NT541 - IDS on Software-Defined Network
+# Software-Defined Network Intrusion Detection System for DDoS Attack Detection
+
 ## System Architecture:
 ![Architecuture](img/architecture.png)
 ## IP Addresses:
@@ -9,9 +10,7 @@
 | Controller VM | VMNet 2 | VMNet 2: 192.168.111.12/24 |
 | Victim VM | VMNet 2 | VMNet 2: 192.168.111.13/24 |
 | Attacker | VMNet 1 | 192.168.184.11 |
-## Notes for this project: [Note](NOTES.md)
-## Workflow
-### DDoS Attack
+## Workflows (in Vietnamese):
 ```mermaid
 sequenceDiagram
     participant A as Attacker (hping3)
@@ -40,10 +39,10 @@ sequenceDiagram
 
 
 ## Result:
-- Created a SDN Architecture with OVSSwitch and Ryu Controller
+- Created a SDN Architecture with OVSSwitch and Ryu Controller:
 ![SDN](img/ovsctl.png)
 
-- Monitoring System with Prometheus, Grafana, Loki
+- Monitoring System with Prometheus, Grafana, Loki:
 ![Grafana](img/grafana_1.jpg)
 ![Grafana](img/grafana_2.jpg)
 ![Log](img/log_1.jpg)
@@ -51,3 +50,28 @@ sequenceDiagram
 
 - Successfully detected DDoS attack with Suricata
 ![DDoS](img/ddos_detection.png)
+
+## Notes for this project: [Note](NOTES.md)
+
+## Tool Stack References
+
+- **Open vSwitch (OVS)** – Virtual switch for Software-Defined Networking  
+  https://docs.openvswitch.org/
+
+- **Ryu SDN Controller** – Python-based SDN controller framework  
+  https://ryu.readthedocs.io/
+
+- **Suricata IDS/IPS** – Network intrusion detection and prevention system  
+  https://docs.suricata.io/
+
+- **Prometheus** – Monitoring and metrics collection system  
+  https://prometheus.io/docs/
+
+- **Grafana** – Visualization and monitoring dashboards  
+  https://grafana.com/docs/
+
+- **Grafana Loki** – Log aggregation system for cloud-native environments  
+  https://grafana.com/docs/loki/
+
+- **hping3** – Network tool used for generating TCP SYN flood traffic  
+  https://github.com/antirez/hping
