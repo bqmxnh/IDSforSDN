@@ -1,7 +1,7 @@
 # IDS for SDN - Setup Guide
 
 ## 1. Setup OVS Switch (Switch VM)
-Goal: Create the OVS bridge, attach physical ports, create two internal gateways, and point to the Ryu controller.
+Create the OVS bridge, attach physical ports, create two internal gateways, and point to the Ryu controller.
 
 ```bash
 sudo ovs-vsctl --if-exists del-br br-s1
@@ -35,7 +35,7 @@ Notes:
 - Quick verification: `sudo ovs-vsctl show`.
 
 ## 2. Start Ryu Controller (Controller VM)
-Goal: Run the Ryu router app and expose metrics for Prometheus scraping.
+Run the Ryu router app and expose metrics for Prometheus scraping.
 
 ```bash
 # Session 1: Ryu app
@@ -57,7 +57,7 @@ Notes:
 - Make sure port `9100` is reachable by Prometheus.
 
 ## 3. Configure IP Route
-Goal: Force traffic through the OVS gateway instead of direct routing on default NIC routes.
+Force traffic through the OVS gateway instead of direct routing on default NIC routes.
 
 ### 3.1 On Switch VM
 Delete network routes on `ens37` and `ens38` to avoid conflicts with OVS.
@@ -85,7 +85,7 @@ Notes:
 - If SSH is lost after route changes, use the VM console to recover.
 
 ## 4. Generate SYN Flood Traffic (Attacker)
-Goal: Generate attack traffic to test IDS detection and monitoring.
+Generate attack traffic to test IDS detection and monitoring.
 
 ```bash
 sudo hping3 -c 10000 -d 120 -S -w 64 -p 21 --flood --rand-source 192.168.111.13
