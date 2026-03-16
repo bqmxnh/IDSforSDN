@@ -51,7 +51,7 @@ sequenceDiagram
 - Successfully detected DDoS attack with Suricata
 ![DDoS](img/ddos_detection.png)
 
-## Notes for this project: [Note](NOTES.md)
+## Setup and Deployment Guide: [SETUP](SETUP.md)
 
 ## Tool Stack References
 
